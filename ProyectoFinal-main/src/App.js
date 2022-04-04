@@ -36,7 +36,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route exact path="profile/:username" element={<Profile />} />
-        <Route exact path="anime/:animename" element={<Anime />} />
+        <Route exact path="anime/:animename" element={<Anime data={data} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

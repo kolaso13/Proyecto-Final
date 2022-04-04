@@ -18,7 +18,7 @@ const Card = ({ data }) => {
       <div className="card-body">
         <h4>{data.name}</h4>
         <Link to={`/anime/${data.name}`}>
-          <button className="btn btn-secondary">{data.name}</button>
+          <button className="btn btn-secondary">Ver</button>
         </Link>
       </div>
     </div>

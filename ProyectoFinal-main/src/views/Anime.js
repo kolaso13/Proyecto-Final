@@ -9,29 +9,45 @@ import Navbar from "../components/Navbar";
 import "../styles/Anime.sass";
 
 const Anime = ({ data }) => {
-  /*Logica*/
-  //Cogemos los parametros
+  const [isLoading, setIsLoading] = useState(true);
+
   const { animename } = useParams();
-  const dataFiltrada = data.filter((dato) => dato.name === animename);
+  const [AnimeData, setAnimeData] = useState();
+  /*Logica*/
+  const array = new Array();
+  useEffect(() => {
+    const obtenerDatos = () => {
+      fetch(`https://localhost:5001/api/AnimeDatas/${animename}`)
+        .then((response) => response.json())
+        .then((message) => {
+          array.push(message);
+          setAnimeData(array);
+          setIsLoading(false);
+        });
+    };
+    obtenerDatos();
+  }, [animename]);
 
-  const [AnimeData, setAnimeData] = useState(dataFiltrada);
-
+  if (isLoading) {
+    return (
+      <div className="App">
+        <h1>Cargando...</h1>
+      </div>
+    );
+  }
   return (
     <div>
       <Navbar />
       <br />
-      {AnimeData?.map(() => (
-        <h1>Hola</h1>
+
+      {console.log(AnimeData)}
+      {AnimeData?.map((ani) => (
+        <div className="card" key={ani.name} id="content">
+          <img alt="" src={ani.image} />
+          <h2>Anime name: {ani.name}</h2>
+          <p>Anime Description: {ani.description}</p>
+        </div>
       ))}
-      {AnimeData?.map((ani) => {
-        return (
-          <div className="card" key={ani.name} id="content">
-            <img alt="" src={ani.image} />
-            <h2>Anime name: {ani.name}</h2>
-            <p>Anime Description: {ani.description}</p>
-          </div>
-        );
-      })}
     </div>
   );
 };
