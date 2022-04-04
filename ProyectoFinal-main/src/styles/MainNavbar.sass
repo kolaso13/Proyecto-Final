@@ -1,0 +1,120 @@
+#headerContainer
+    width: 100%
+    height: 400px
+    background-image: url("../img/mainImage.png")
+    background-repeat: no-repeat
+
+#headerDifuminado
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.8)
+
+header
+    width: 100%
+    height: auto
+    position: fixed
+    z-index: 1
+    transition: all 0.5s ease-out
+
+.sticky
+    background: #272727 
+    
+nav
+    height: 80px
+    width: 60%
+    justify-content: center
+    margin: auto
+#menuicon
+    width: 25px
+    height: 25px
+    display: none
+
+label.logo
+    color: white
+    font-size: 35px
+    line-height: 80px
+    padding: 0 100px
+    font-weight: bold
+
+nav ul
+    float: right
+    margin-right: 20px
+
+nav ul li
+    display: inline-block
+    line-height: 80px
+    margin: 0 5px
+
+nav ul li a
+    color: white
+    font-size: 17px
+    padding: 7px 13px
+    border-radius: 3px
+    text-transform: uppercase
+
+.active
+    background: #6b6b6b !important
+    transition: .5s
+
+a:hover
+    background: #6b6b6b
+    transition: .5s
+
+.checkbtn
+    font-size: 30px
+    color: white
+    float: right
+    line-height: 80px
+    margin-right: 40px
+    cursor: pointer
+
+#check
+    display: none
+
+@media (max-width:952px)
+    label.logo
+        font-size: 30px
+        padding-left: 50px
+
+    nav ul li a
+        font-size: 16px
+
+@media (max-width:858px)
+
+    .checkbtn
+        display: block
+
+    ul
+        position: fixed
+        z-index: 3
+        width: 100%
+        height: 100vh
+        background: #4d4d4d
+        top: 0
+        left: -100%
+        text-align: center
+        transition: all .5s
+        margin-top: 75px
+
+    nav
+        position: fixed
+        z-index: 3
+
+    nav ul li
+        display: block
+        margin: 50px 0
+        line-height: 30px
+
+    nav ul li a
+        font-size: 20px
+
+    a.active,a:hover
+        background: none
+        color: #6b6b6b
+
+    #check:checked ~ ul
+        left: 0
+
+    #menuicon
+        display: block
+        margin-top: 25px

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Shingeki no Kyojin",
+    "description": "Shingeki des",
+    "chapters": "24",
+    "image":"../img/ShingekinoKyojin.jpg"
+  },
+  {
+    "name": "Sword Art Online",
+    "description": "Sao",
+    "chapters": "24",
+    "image":""
+  },
+  {
+    "name": "Fairy tail",
+    "description": "FT",
+    "chapters": "24",
+    "image":"../img/Fairytail.jpg"
+  },
+  {
+    "name": "Tate no Yuusha",
+    "description": "TnY",
+    "chapters": "24",
+    "image":""
+  },
+  {
+    "name": "Fate",
+    "description": "F",
+    "chapters": "24",
+    "image":"../img/Fate.webp"
+  },
+  {
+    "name": "Shokugeki no Souma",
+    "description": "Food Wars",
+    "chapters": "24",
+    "image":""
+  }
+]
+
