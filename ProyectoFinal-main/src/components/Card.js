@@ -1,51 +1,39 @@
 //React
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Card.sass";
 const Card = ({ data }) => {
+  const [visible, setVisible] = useState(false);
   const imgStyles = {
     height: "450px",
     objectFit: "cover",
-    width: "auto",
+    width: "100%",
   };
 
   return (
-    <div className="card carta">
-      <img
-        src={data.image}
-        alt={data.name}
-        className="card-img-top imagen"
-        style={imgStyles}
-      />
+    <div
+      className="card"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      <Link to={`/anime/${data.name}`}>
+        <img
+          src={data.image}
+          alt={data.name}
+          className="card-img-top imagen"
+          style={imgStyles}
+        />
+      </Link>
       <div className="card-body">
-        <h4>{data.name}</h4>
-        <Link to={`/anime/${data.name}`}>
-          <button id="cataloguebtn">Ver</button>
-        </Link>
+        {visible ? (
+          <h4 className="text">{data.name}</h4>
+        ) : (
+          <h4 className="text" style={{ display: "none" }}>
+            {data.name}
+          </h4>
+        )}
       </div>
     </div>
-    // <div className="views-row views-row-1 views-row-odd views-row-first col-sm-6 col-md-4 col-lg-3">
-    //   <div className="views-field-nothing">
-    //     <span className="field-content">
-    //       <a
-    //         href="/cartelera/ambulance-plan-de-huida.html"
-    //         title="AMBULANCE. PLAN DE HUIDA"
-    //       >
-    //         <img
-    //           src="https://www.cinespalafox.com/sites/default/files/imagecache/listadoCartelera/PosterAmbulance1Final.jpg"
-    //           alt=""
-    //           title=""
-    //           class="imagecache imagecache-listadoCartelera imagecache-default imagecache-listadoCartelera_default img-responsive"
-    //           width="270"
-    //           height="400"
-    //         />
-    //         <div class="caption">
-    //           <h2>AMBULANCE. PLAN DE HUIDA</h2>
-    //           <span>Comprar entradas</span>
-    //         </div>
-    //       </a>
-    //     </span>
-    //   </div>
-    // </div>
   );
 };
 
