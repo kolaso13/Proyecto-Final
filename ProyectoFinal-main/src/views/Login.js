@@ -24,7 +24,9 @@ const Login = () => {
         <i class="pi pi-lock"></i>
       </div>
 
-      <button type="submit">Log In</button>
+      <button id="btnlogin" type="submit">
+        Log In
+      </button>
     </div>
   );
 };

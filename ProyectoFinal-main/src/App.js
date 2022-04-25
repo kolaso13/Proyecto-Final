@@ -21,7 +21,6 @@ function App() {
       const url = "https://localhost:5001/api/AnimeDatas";
       const respuesta = await fetch(url).then((res) => res.json());
       setData(respuesta);
-      console.log(respuesta);
     };
     obtenerDatos();
   }, []);
