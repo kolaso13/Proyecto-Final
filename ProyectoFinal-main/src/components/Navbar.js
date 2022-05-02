@@ -3,7 +3,12 @@ import "../styles/Navbar.sass";
 import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
 import users from "../data/usuarios.json";
+import Login from "../views/Login";
 const Navbar = () => {
+  const Login = () => {
+    document.getElementById("difuminar").className = "difuminado";
+    document.getElementById("login").style.display = "flex";
+  };
   return (
     <div>
       <div id="headerHeight" className="NavNoMain">
@@ -28,9 +33,7 @@ const Navbar = () => {
                   <Link to="/login">Iniciar Sesión</Link>
                 )}
               </li>
-              <li>
-                <Link to="/Login">Log in</Link>
-              </li>
+              <li onClick={Login}>Log in</li>
             </ul>
           </nav>
         </header>

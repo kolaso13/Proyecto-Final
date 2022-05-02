@@ -1,5 +1,6 @@
 import MainNavbar from "../components/MainNavbar";
 import Footer from "../components/Footer";
+import Login from "./Login";
 import { Carousel } from "primereact/carousel";
 import "../styles/Home.sass";
 import "primeicons/primeicons.css";
@@ -51,39 +52,41 @@ const Home = ({ data, setData }) => {
 
   return (
     <div>
-      <MainNavbar />
+      <Login />
+      <div id="difuminar">
+        <MainNavbar />
 
-      <div className="carousel">
-        <div className="card" style={{ border: "none" }}>
-          <Carousel
-            value={data}
-            numVisible={5}
-            numScroll={1}
-            responsiveOptions={responsiveOptions}
-            className="custom-carousel"
-            circular
-            itemTemplate={animeTemplate}
-            header={<h2>Popular en MALABARJU</h2>}
-          />
+        <div className="carousel">
+          <div className="card" style={{ border: "none" }}>
+            <Carousel
+              value={data}
+              numVisible={5}
+              numScroll={1}
+              responsiveOptions={responsiveOptions}
+              className="custom-carousel"
+              circular
+              itemTemplate={animeTemplate}
+              header={<h2>Popular en MALABARJU</h2>}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="carousel">
-        <div className="card" style={{ border: "none" }}>
-          <Carousel
-            value={data}
-            numVisible={5}
-            numScroll={1}
-            responsiveOptions={responsiveOptions}
-            className="custom-carousel"
-            circular
-            itemTemplate={animeTemplate}
-            header={<h2>Tendencias ahora</h2>}
-          />
+        <div className="carousel">
+          <div className="card" style={{ border: "none" }}>
+            <Carousel
+              value={data}
+              numVisible={5}
+              numScroll={1}
+              responsiveOptions={responsiveOptions}
+              className="custom-carousel"
+              circular
+              itemTemplate={animeTemplate}
+              header={<h2>Tendencias ahora</h2>}
+            />
+          </div>
         </div>
+        <Footer />
       </div>
-
-      <Footer />
     </div>
   );
 };

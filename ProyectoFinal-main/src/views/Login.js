@@ -13,7 +13,7 @@ const Login = () => {
   const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (
-    <div className="App">
+    <div id="login">
       <div className="input-container">
         <input type="text" placeholder="Username" />
         <i class="pi pi-user icono"></i>

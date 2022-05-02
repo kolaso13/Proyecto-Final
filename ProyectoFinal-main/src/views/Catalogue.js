@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import Card from "../components/Card";
-
+import Login from "./Login";
 //Components
 import Navbar from "../components/Navbar";
 
@@ -51,33 +51,36 @@ const Catalogue = ({ data, setData }) => {
   return (
     <>
       <div>
-        <Navbar />
-        <br />
-        <div className="container">
-          <div id="filtros">
-            <span className="p-input-icon-left">
-              <i className="pi pi-search" style={{ fontSize: "20px" }} />
-              <InputText
-                value={busqueda}
-                placeholder="Búsqueda por Nombre o Empresa"
-                onChange={handleChangeF}
-              />
-            </span>
-          </div>
+        <Login />
+        <div id="difuminar">
+          <Navbar />
           <br />
-          <br />
-          <div className="row">
-            {dataFiltrada?.map((dato) => {
-              return (
-                <div className="col-md-4" key={dato.name}>
-                  <Card data={dato} />
-                </div>
-              );
-            })}
+          <div className="container">
+            <div id="filtros">
+              <span className="p-input-icon-left">
+                <i className="pi pi-search" style={{ fontSize: "20px" }} />
+                <InputText
+                  value={busqueda}
+                  placeholder="Búsqueda por Nombre o Empresa"
+                  onChange={handleChangeF}
+                />
+              </span>
+            </div>
+            <br />
+            <br />
+            <div className="row">
+              {dataFiltrada?.map((dato) => {
+                return (
+                  <div className="col-md-4" key={dato.name}>
+                    <Card data={dato} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

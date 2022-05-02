@@ -13,7 +13,10 @@ const MainNavbar = () => {
       header.classList.remove("sticky");
     }
   });
-
+  const Login = () => {
+    document.getElementById("difuminar").className = "difuminado";
+    document.getElementById("login").style.display = "flex";
+  };
   return (
     <div>
       <div id="headerContainer">
@@ -39,9 +42,7 @@ const MainNavbar = () => {
                     <Link to="/login">Iniciar Sesión</Link>
                   )}
                 </li>
-                <li>
-                  <Link to="/Login">Log in</Link>
-                </li>
+                <li onClick={Login}>Log in</li>
               </ul>
             </nav>
           </header>
