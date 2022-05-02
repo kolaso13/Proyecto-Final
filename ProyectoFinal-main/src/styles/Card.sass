@@ -1,9 +1,4 @@
 
-$gray: #27282d
-$medium-gray: lighten(#27282d, 25%)
-$light-gray: lighten(#27282d, 65%)
-$gradient: linear-gradient(140deg, rgb(219, 98, 65) 0%, rgb(229, 91, 141) 100%)
-
 .imagen
     opacity: 1
     display: block
@@ -13,7 +8,13 @@ $gradient: linear-gradient(140deg, rgb(219, 98, 65) 0%, rgb(229, 91, 141) 100%)
     backface-visibility: hidden
 
 .imagen:hover
-    opacity: 0.3
+    opacity: 0.15
+    border-radius: 15px
+.card
+    a:hover
+        background: #442e2e
+        transition: .5s
+        border-radius: 15px
 
 .text
     color: white
@@ -22,11 +23,6 @@ $gradient: linear-gradient(140deg, rgb(219, 98, 65) 0%, rgb(229, 91, 141) 100%)
     font-size: 30px
     bottom: 100px
     text-align: center
-
-.carta
-    background: var(--surface-card)
-    padding: 2rem
-    margin-bottom: 2rem
 
 .container
     position: relative

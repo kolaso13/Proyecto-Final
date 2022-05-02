@@ -56,10 +56,7 @@ const Catalogue = ({ data, setData }) => {
         <div className="container">
           <div id="filtros">
             <span className="p-input-icon-left">
-              <i
-                className="pi pi-search"
-                style={{ fontSize: "20px", margin: "auto" }}
-              />
+              <i className="pi pi-search" style={{ fontSize: "20px" }} />
               <InputText
                 value={busqueda}
                 placeholder="Búsqueda por Nombre o Empresa"

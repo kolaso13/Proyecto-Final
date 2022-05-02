@@ -17,7 +17,7 @@ const MainNavbar = () => {
   return (
     <div>
       <div id="headerContainer">
-        <div id="headerDifuminado">
+        <div id="headerDifuminado" className="NavMain">
           <header>
             <nav>
               <input type="checkbox" id="check" />

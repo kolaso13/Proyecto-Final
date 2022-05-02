@@ -8,10 +8,18 @@ const Card = ({ data }) => {
     height: "450px",
     objectFit: "cover",
     width: "100%",
+    boxShadow: "black 2px 5px 15px",
+    borderRadius: "15px",
   };
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={{
+        border: "none",
+        borderRadius: "15px",
+      }}
+    >
       <Link to={`/anime/${data.name}`}>
         <img
           src={data.image}
