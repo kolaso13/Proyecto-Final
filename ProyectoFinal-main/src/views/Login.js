@@ -23,12 +23,12 @@ const Login = () => {
       </div>
       <div className="input-container">
         <input type="text" placeholder="Username" />
-        <i class="pi pi-user icono"></i>
+        <i className="pi pi-user icono"></i>
       </div>
 
       <div className="input-container">
         <input type="password" placeholder="Password" />
-        <i class="pi pi-lock icono"></i>
+        <i className="pi pi-lock icono"></i>
       </div>
 
       <button id="btnlogin" type="submit">
