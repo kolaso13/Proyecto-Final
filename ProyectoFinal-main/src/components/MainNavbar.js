@@ -16,6 +16,7 @@ const MainNavbar = () => {
   const Login = () => {
     document.getElementById("difuminar").className = "difuminado";
     document.getElementById("login").style.display = "flex";
+    document.body.style.overflow = "hidden";
   };
   return (
     <div>
@@ -42,7 +43,9 @@ const MainNavbar = () => {
                     <Link to="/login">Iniciar Sesión</Link>
                   )}
                 </li>
-                <li onClick={Login}>Log in</li>
+                <li id="login-Button" onClick={Login}>
+                  Log in
+                </li>
               </ul>
             </nav>
           </header>

@@ -11,9 +11,16 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => alert(JSON.stringify(data));
-
+  function Cerrar() {
+    document.getElementById("difuminar").className = "difuminar";
+    document.getElementById("login").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
   return (
     <div id="login">
+      <div className="input-container circle-x">
+        <button onClick={Cerrar} class="pi pi-times-circle icono"></button>
+      </div>
       <div className="input-container">
         <input type="text" placeholder="Username" />
         <i class="pi pi-user icono"></i>
