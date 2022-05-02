@@ -49,9 +49,9 @@ const Home = ({ data, setData }) => {
   return (
     <div>
       <MainNavbar />
-      <hr></hr>
+
       <div className="carousel">
-        <div className="card">
+        <div className="card" style={{ border: "none" }}>
           <Carousel
             value={data}
             numVisible={5}
@@ -65,9 +65,8 @@ const Home = ({ data, setData }) => {
         </div>
       </div>
 
-      <hr></hr>
       <div className="carousel">
-        <div className="card">
+        <div className="card" style={{ border: "none" }}>
           <Carousel
             value={data}
             numVisible={5}
@@ -80,7 +79,7 @@ const Home = ({ data, setData }) => {
           />
         </div>
       </div>
-      <hr></hr>
+
       <Footer />
     </div>
   );
