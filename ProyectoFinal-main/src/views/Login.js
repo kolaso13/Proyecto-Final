@@ -16,12 +16,12 @@ const Login = () => {
     <div className="App">
       <div className="input-container">
         <input type="text" placeholder="Username" />
-        <i class="pi pi-user"></i>
+        <i class="pi pi-user icono"></i>
       </div>
 
       <div className="input-container">
         <input type="password" placeholder="Password" />
-        <i class="pi pi-lock"></i>
+        <i class="pi pi-lock icono"></i>
       </div>
 
       <button id="btnlogin" type="submit">
