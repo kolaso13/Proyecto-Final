@@ -20,7 +20,7 @@ const Card = ({ data }) => {
         borderRadius: "15px",
       }}
     >
-      <Link id="hola" to={`/anime/${data.name}`}>
+      <Link to={`/anime/${data.name}`}>
         <img
           src={data.image}
           alt={data.name}

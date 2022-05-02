@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { Carousel } from "primereact/carousel";
 import "../styles/Home.sass";
 import "primeicons/primeicons.css";
+import { Link } from "react-router-dom";
 const Home = ({ data, setData }) => {
   /*Logica*/
 
@@ -28,15 +29,17 @@ const Home = ({ data, setData }) => {
       <div className="anime-item">
         <div className="anime-item-content">
           <div className="mb-3">
-            <img
-              src={`${anime.image}`}
-              onError={(e) =>
-                (e.target.src =
-                  "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
-              }
-              alt={anime.name}
-              className="anime-image"
-            />
+            <Link to={`/anime/${anime.name}`}>
+              <img
+                src={`${anime.image}`}
+                onError={(e) =>
+                  (e.target.src =
+                    "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
+                }
+                alt={anime.name}
+                className="anime-image"
+              />
+            </Link>
           </div>
           <div>
             <h4 className="mb-1">{anime.name}</h4>
