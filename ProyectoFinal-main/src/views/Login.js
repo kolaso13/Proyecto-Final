@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div id="login">
       <div className="input-container circle-x">
-        <button onClick={Cerrar} class="pi pi-times-circle icono"></button>
+        <button onClick={Cerrar} className="pi pi-times-circle icono"></button>
       </div>
       <div className="input-container">
         <input type="text" placeholder="Username" />
