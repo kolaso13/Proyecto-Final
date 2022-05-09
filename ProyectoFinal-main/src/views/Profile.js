@@ -97,7 +97,7 @@ const Profile = ({ data }) => {
                           <td>
                             <img
                               src={dat.image}
-                              style={{ width: "75px", height: "100px" }}
+                              style={{ width: "85px", height: "125px" }}
                             ></img>
                           </td>
                           <td>{dat.name}</td>
