@@ -1,7 +1,7 @@
 //React
 import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
+
 import Card from "../components/Card";
 import Login from "./Login";
 //Components
@@ -61,7 +61,7 @@ const Catalogue = ({ data, setData }) => {
                 <i className="pi pi-search" style={{ fontSize: "20px" }} />
                 <InputText
                   value={busqueda}
-                  placeholder="Búsqueda por Nombre o Empresa"
+                  placeholder="Búsqueda por Nombre"
                   onChange={handleChangeF}
                 />
               </span>
