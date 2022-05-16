@@ -1,31 +1,39 @@
-#username
-    background-color: #efefef
+#profileContent
+    width: auto
+    height: 100vh
 
-#Information
-    display: flex
-    flex-direction: row
-    padding: 5px
-    padding-left: 10px
+    #profileTop
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 100px
+        height: 350px
+        background-color: #d6cdc1
 
-    #userInfo
-        width: auto
+        #userAvatar
+            border-radius: 50%
+        #username
 
-    #userStats
-        width: auto
-        margin-left: 40px
-
-        #FavAnimes
+    #profileBottom
+        display: flex
+        padding: 30px
+        gap: 40px
+        #userData
+            h5
+                margin-top: 30px
+        #userAnime
             width: 100%
-            height: auto
-            overflow: scroll
-            height: 500px
-
-            #FavAnimesTable
+            #FavAnimesDiv
                 width: 100%
-                thead
-                    tr
-                        th
+                overflow: scroll
+                height: 360px
+                #FavAnimesTable
+                    width: 100%
+
+                    thead
+                        tr
+                            th
+                                text-align: center
+                    tbody
+                        tr
                             text-align: center
-                tbody
-                    tr
-                        text-align: center
