@@ -25,7 +25,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
     };
     obtenerDatos2();
   }, []);
-  console.log(data);
+  // console.log(data);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isEditingUserInfo, setisEditingUserInfo] = useState(false);
@@ -46,8 +46,8 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
   const dataAnimeFavUser = dataAnimeFav?.filter(
     (word) => word.username == username
   );
-  console.log(dataAnimeFavUser);
-  console.log(DataPerfil);
+  // console.log(dataAnimeFavUser);
+  // console.log(DataPerfil);
   if (DataPerfil != undefined && dataAnimeFavUser != undefined) {
     for (let i = 0; i < DataPerfil.length; i++) {
       for (let j = 0; j < dataAnimeFavUser.length; j++) {
@@ -57,7 +57,34 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
       }
     }
   }
-  console.log(dataAnimesFav);
+  // console.log(dataAnimesFav);
+  var [favorito, setFavorito] = useState(0);
+  function borrarFavorito(animename){
+    fetch(`https://localhost:5001/api/Anime_User/${localStorage.getItem("username")}/${animename}`)
+      .then((response) => response.json())
+      .then((response) => {
+        if(response[0].favoritoId != null){
+          favorito = response[0].favoritoId;
+          setFavorito(favorito)
+          borrando();
+        }else{
+        }
+      }).catch();
+  }
+  function borrando(){
+    fetch(`https://localhost:5001/api/Anime_User/${favorito}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
+    }).then(() => {
+      console.log('removed');
+   }).catch(err => {
+     console.error(err)
+   });
+  }
+
   /*Logica*/
 
   // if (isLoading) {
@@ -237,7 +264,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                   </thead>
                   <tbody>
                     {dataAnimesFav?.map((dat) => {
-                      console.log(dat);
+                      // console.log(dat);
                       return (
                         <tr key={dat.name}>
                           <td>
@@ -251,7 +278,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                           <td>TV</td>
                           <td>{dat.episodes}</td>
                           <td>
-                            <i className="pi pi-trash"></i>
+                            <button id="btn-borrar" onClick={() => borrarFavorito(dat.name)} className="pi pi-trash"></button>
                           </td>
                         </tr>
                       );

@@ -37,7 +37,6 @@ const Login = ({ isLogged, setisLogged }) => {
         localStorage.setItem("token", response.token);
         localStorage.setItem("username", response.username);
         setDatosError(false);
-        localStorage.setItem("logueado", true);
         Cerrar();
       })
       .catch((err) => {
