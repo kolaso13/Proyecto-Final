@@ -81,7 +81,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
               alt=""
               style={{ width: "300px", height: "300px" }}
             />
-            <h1 id="username">Username</h1>
+            <h1 id="username">{username}</h1>
           </div>
           <div id="profileBottom">
             <div id="userData">
@@ -227,7 +227,6 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                 <table id="FavAnimesTable">
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>Image</th>
                       <th>Anime Title</th>
                       <th>Score</th>
@@ -238,9 +237,9 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                   </thead>
                   <tbody>
                     {dataAnimesFav?.map((dat) => {
+                      console.log(dat);
                       return (
                         <tr key={dat.name}>
-                          <td>1</td>
                           <td>
                             <img
                               src={dat.image}
