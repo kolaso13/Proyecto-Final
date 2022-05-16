@@ -4,6 +4,7 @@ import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
 import Login from "../views/Login";
 const Navbar = ({ isLogged, setisLogged }) => {
+  const userNameLocal = localStorage.getItem("username");
   const Login = () => {
     setisLogged(!isLogged);
     document.getElementById("difuminar").className = "difuminado";
@@ -13,7 +14,9 @@ const Navbar = ({ isLogged, setisLogged }) => {
 
   const CerrarSesion = () => {
     setisLogged(!isLogged);
+    localStorage.removeItem("username");
   };
+  console.log(userNameLocal);
   return (
     <div>
       <div id="headerHeight" className="NavNoMain">
@@ -31,9 +34,14 @@ const Navbar = ({ isLogged, setisLogged }) => {
               <li>
                 <Link to="/catalogue">Catalogo</Link>
               </li>
-              <li>
-                <Link to={`/profile/Underline`}>Perfil</Link>
-              </li>
+              {isLogged ? (
+                <li>
+                  <Link to={`/profile/${userNameLocal}`}>Perfil</Link>
+                </li>
+              ) : (
+                <></>
+              )}
+
               {isLogged ? (
                 <li id="login-Button" onClick={CerrarSesion}>
                   Cerrar Sesion

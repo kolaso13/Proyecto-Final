@@ -20,12 +20,12 @@ function App() {
   const [dataAnimeFav, setdataAnimeFav] = useState();
 
   const [isLogged, setisLogged] = useState(
-    localStorage.getItem("token") != null ||
-      localStorage.getItem("token") != undefined
+    localStorage.getItem("username") != null ||
+      localStorage.getItem("username") != undefined
       ? true
       : false
   );
-
+  console.log(isLogged);
   useEffect(() => {
     const obtenerDatosDataAnime = async () => {
       let url = "https://localhost:5001/api/AnimeDatas";

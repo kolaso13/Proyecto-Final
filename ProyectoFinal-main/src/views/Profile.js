@@ -38,7 +38,7 @@ const Profile = ({
   const [isEditingUserInfo, setisEditingUserInfo] = useState(false);
   const { username } = useParams();
   const [DataPerfil, setDataPerfil] = useState(data);
-  // const [dataAnimesFav, setdataAnimesFav] = useState();
+
   let dataAnimesFav = new Array();
   const [Nombre, setNombre] = useState("Peter");
   const [Apellido, setApellido] = useState("Plato");

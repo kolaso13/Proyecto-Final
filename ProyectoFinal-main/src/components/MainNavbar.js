@@ -5,6 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 import users from "../data/usuarios.json";
 const MainNavbar = ({ isLogged, setisLogged }) => {
   /*Logica*/
+  const userNameLocal = localStorage.getItem("username");
   window.addEventListener("scroll", () => {
     const header = document.querySelector("header");
     if (window.pageYOffset !== 0) {
@@ -22,7 +23,9 @@ const MainNavbar = ({ isLogged, setisLogged }) => {
 
   const CerrarSesion = () => {
     setisLogged(!isLogged);
+    localStorage.removeItem("username");
   };
+  console.log(userNameLocal);
   return (
     <div>
       <div id="headerContainer">
@@ -41,9 +44,13 @@ const MainNavbar = ({ isLogged, setisLogged }) => {
                 <li>
                   <Link to="/catalogue">Catalogo</Link>
                 </li>
-                <li>
-                  <Link to={`/profile/Underline`}>Perfil</Link>
-                </li>
+                {isLogged ? (
+                  <li>
+                    <Link to={`/profile/${userNameLocal}`}>Perfil</Link>
+                  </li>
+                ) : (
+                  <></>
+                )}
                 {isLogged ? (
                   <li id="login-Button" onClick={CerrarSesion}>
                     Cerrar Sesion
