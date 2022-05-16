@@ -3,7 +3,7 @@ import "../styles/MainNavbar.sass";
 import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
 import users from "../data/usuarios.json";
-const MainNavbar = () => {
+const MainNavbar = ({ isLogged, setisLogged }) => {
   /*Logica*/
   window.addEventListener("scroll", () => {
     const header = document.querySelector("header");
@@ -14,9 +14,14 @@ const MainNavbar = () => {
     }
   });
   const Login = () => {
+    setisLogged(!isLogged);
     document.getElementById("difuminar").className = "difuminado";
     document.getElementById("login").style.display = "flex";
     document.body.style.overflow = "hidden";
+  };
+
+  const CerrarSesion = () => {
+    setisLogged(!isLogged);
   };
   return (
     <div>
@@ -39,9 +44,15 @@ const MainNavbar = () => {
                 <li>
                   <Link to={`/profile/Underline`}>Perfil</Link>
                 </li>
-                <li id="login-Button" onClick={Login}>
-                  Log in
-                </li>
+                {isLogged ? (
+                  <li id="login-Button" onClick={CerrarSesion}>
+                    Cerrar Sesion
+                  </li>
+                ) : (
+                  <li id="login-Button" onClick={Login}>
+                    Iniciar Sesion
+                  </li>
+                )}
               </ul>
             </nav>
           </header>

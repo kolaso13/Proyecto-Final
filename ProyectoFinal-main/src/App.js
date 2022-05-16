@@ -18,6 +18,7 @@ function App() {
 
   const [data, setData] = useState();
   const [dataAnimeFav, setdataAnimeFav] = useState();
+  const [isLogged, setisLogged] = useState(false);
   useEffect(() => {
     const obtenerDatosDataAnime = async () => {
       let url = "https://localhost:5001/api/AnimeDatas";
@@ -38,7 +39,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home data={data} setData={setData} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              data={data}
+              setData={setData}
+              isLogged={isLogged}
+              setisLogged={setisLogged}
+            />
+          }
+        />
         <Route
           path="catalogue"
           element={<Catalogue data={data} setData={setData} />}

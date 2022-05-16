@@ -5,7 +5,7 @@ import { Carousel } from "primereact/carousel";
 import "../styles/Home.sass";
 import "primeicons/primeicons.css";
 import { Link } from "react-router-dom";
-const Home = ({ data, setData }) => {
+const Home = ({ data, setData, isLogged, setisLogged }) => {
   /*Logica*/
   console.log(data);
   const responsiveOptions = [
@@ -54,7 +54,7 @@ const Home = ({ data, setData }) => {
     <div>
       <Login />
       <div id="difuminar">
-        <MainNavbar />
+        <MainNavbar isLogged={isLogged} setisLogged={setisLogged} />
 
         <div className="carousel">
           <div className="card" style={{ border: "none" }}>
