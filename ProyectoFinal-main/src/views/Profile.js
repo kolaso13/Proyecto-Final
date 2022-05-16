@@ -237,11 +237,7 @@ const Profile = ({
                       <th>Score</th>
                       <th>Type</th>
                       <th>Episodes</th>
-                      {!isEditingUserInfo && usernameLocal === username ? (
-                        <th>Delete</th>
-                      ) : (
-                        <></>
-                      )}
+                      {usernameLocal === username ? <th>Delete</th> : <></>}
                     </tr>
                   </thead>
                   <tbody>
@@ -259,7 +255,7 @@ const Profile = ({
                           <td>{Math.floor(Math.random() * 100) + 1}</td>
                           <td>TV</td>
                           <td>{dat.episodes}</td>
-                          {!isEditingUserInfo && usernameLocal === username ? (
+                          {usernameLocal === username ? (
                             <td>
                               <i className="pi pi-trash"></i>
                             </td>
