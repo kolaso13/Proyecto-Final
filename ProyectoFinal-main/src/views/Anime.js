@@ -29,6 +29,70 @@ const Anime = ({ data, isLogged, setisLogged }) => {
     };
     obtenerDatos();
   }, [animename]);
+  var [favorito, setFavorito] = useState(0);
+  useEffect(() => {
+    const obtenerFavorito = () => {
+      fetch(
+        `https://localhost:5001/api/Anime_User/${localStorage.getItem(
+          "username"
+        )}/${animename}`
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response[0].favoritoId != null) {
+            favorito = response[0].favoritoId;
+            setFavorito(favorito);
+            setisFav(true);
+          } else {
+            setisFav(false);
+          }
+        })
+        .catch();
+    };
+    obtenerFavorito();
+  }, [animename]);
+
+  function borrarFavorito() {
+    fetch(`https://localhost:5001/api/Anime_User/${favorito}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then(() => {
+        console.log("removed");
+        setisFav(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function añadirFavorito() {
+    fetch("https://localhost:5001/api/Anime_User", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem("username"),
+        animeName: animename,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then((response) => {
+        setisFav(true);
+      })
+      .catch((err) => {
+        console.log("error");
+      });
+  }
 
   if (isLoading) {
     return (
@@ -54,11 +118,11 @@ const Anime = ({ data, isLogged, setisLogged }) => {
                   <img alt="" src={ani.image} style={{ width: "250px" }} />
                   <div>
                     {isFav ? (
-                      <button onClick={() => setisFav(!isFav)}>
+                      <button onClick={() => borrarFavorito()}>
                         <i className="pi pi-heart-fill"></i>
                       </button>
                     ) : (
-                      <button onClick={() => setisFav(!isFav)}>
+                      <button onClick={() => añadirFavorito()}>
                         <i className="pi pi-heart"></i>
                       </button>
                     )}

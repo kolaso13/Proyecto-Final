@@ -64,7 +64,42 @@ const Profile = ({
       }
     }
   }
+
   console.log(dataAnimesFav);
+
+  var [favorito, setFavorito] = useState(0);
+  function borrarFavorito(animename) {
+    fetch(
+      `https://localhost:5001/api/Anime_User/${localStorage.getItem(
+        "username"
+      )}/${animename}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (response[0].favoritoId != null) {
+          favorito = response[0].favoritoId;
+          setFavorito(favorito);
+          borrando();
+        } else {
+        }
+      })
+      .catch();
+  }
+  function borrando() {
+    fetch(`https://localhost:5001/api/Anime_User/${favorito}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then(() => {
+        console.log("removed");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   /*Logica*/
   const usernameLocal = localStorage.getItem("username");
   // if (isLoading) {
@@ -257,7 +292,11 @@ const Profile = ({
                           <td>{dat.episodes}</td>
                           {usernameLocal === username ? (
                             <td>
-                              <i className="pi pi-trash"></i>
+                              <button
+                                id="btn-borrar"
+                                onClick={() => borrarFavorito(dat.name)}
+                                className="pi pi-trash"
+                              ></button>
                             </td>
                           ) : (
                             <></>

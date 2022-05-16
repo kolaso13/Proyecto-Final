@@ -15,6 +15,7 @@ const Navbar = ({ isLogged, setisLogged }) => {
   const CerrarSesion = () => {
     setisLogged(!isLogged);
     localStorage.removeItem("username");
+    localStorage.removeItem("token");
   };
   console.log(userNameLocal);
   return (
