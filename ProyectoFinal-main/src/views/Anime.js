@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import "../styles/Anime.sass";
 import Login from "./Login";
 
-const Anime = ({ data }) => {
+const Anime = ({ data, isLogged, setisLogged }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { animename } = useParams();
@@ -41,7 +41,7 @@ const Anime = ({ data }) => {
     <div>
       <Login />
       <div id="difuminar">
-        <Navbar />
+        <Navbar isLogged={isLogged} setisLogged={setisLogged} />
         <br />
 
         {AnimeData?.map((ani) => (

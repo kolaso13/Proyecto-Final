@@ -18,7 +18,14 @@ function App() {
 
   const [data, setData] = useState();
   const [dataAnimeFav, setdataAnimeFav] = useState();
-  const [isLogged, setisLogged] = useState(false);
+
+  const [isLogged, setisLogged] = useState(
+    localStorage.getItem("token") != null ||
+      localStorage.getItem("token") != undefined
+      ? true
+      : false
+  );
+
   useEffect(() => {
     const obtenerDatosDataAnime = async () => {
       let url = "https://localhost:5001/api/AnimeDatas";
@@ -52,7 +59,14 @@ function App() {
         />
         <Route
           path="catalogue"
-          element={<Catalogue data={data} setData={setData} />}
+          element={
+            <Catalogue
+              data={data}
+              setData={setData}
+              isLogged={isLogged}
+              setisLogged={setisLogged}
+            />
+          }
         />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
@@ -65,13 +79,22 @@ function App() {
               setData={setData}
               dataAnimeFav={dataAnimeFav}
               setdataAnimeFav={setdataAnimeFav}
+              isLogged={isLogged}
+              setisLogged={setisLogged}
             />
           }
         />
         <Route
           exact
           path="anime/:animename"
-          element={<Anime data={data} dataAnimeFav={dataAnimeFav} />}
+          element={
+            <Anime
+              data={data}
+              dataAnimeFav={dataAnimeFav}
+              isLogged={isLogged}
+              setisLogged={setisLogged}
+            />
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

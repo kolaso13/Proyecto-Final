@@ -12,7 +12,7 @@ import Navbar from "../components/Navbar";
 //Styles
 import "../styles/Catalogue.sass";
 import Footer from "../components/Footer";
-const Catalogue = ({ data, setData }) => {
+const Catalogue = ({ data, setData, isLogged, setisLogged }) => {
   const [busqueda, setBusqueda] = useState("");
   const [Generos, setGeneros] = useState(null);
   const [dataFiltrada, setDataFiltrada] = useState(data);
@@ -53,7 +53,7 @@ const Catalogue = ({ data, setData }) => {
       <div>
         <Login />
         <div id="difuminar">
-          <Navbar />
+          <Navbar isLogged={isLogged} setisLogged={setisLogged} />
           <br />
           <div className="container">
             <div id="filtros">

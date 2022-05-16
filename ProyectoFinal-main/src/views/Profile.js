@@ -9,7 +9,14 @@ import Footer from "../components/Footer";
 import "../styles/Profile.sass";
 import Login from "./Login";
 
-const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
+const Profile = ({
+  data,
+  setData,
+  dataAnimeFav,
+  setdataAnimeFav,
+  isLogged,
+  setisLogged,
+}) => {
   useEffect(() => {
     const obtenerDatos = async () => {
       const url = "https://localhost:5001/api/AnimeDatas";
@@ -59,7 +66,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
   }
   console.log(dataAnimesFav);
   /*Logica*/
-
+  const usernameLocal = localStorage.getItem("username");
   // if (isLoading) {
   //   return (
   //     <div className="App">
@@ -71,7 +78,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
     <>
       <Login />
       <div id="difuminar">
-        <Navbar />
+        <Navbar isLogged={isLogged} setisLogged={setisLogged} />
 
         <div id="profileContent">
           <div id="profileTop">
@@ -89,7 +96,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                 <b>Información</b>
                 <div id="editbtn">
                   {" "}
-                  {!isEditingUserInfo ? (
+                  {!isEditingUserInfo && usernameLocal === username ? (
                     <button
                       onClick={() => {
                         setisEditingUserInfo(!isEditingUserInfo);
@@ -98,9 +105,7 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                       <i className="pi pi-pencil"></i>{" "}
                     </button>
                   ) : (
-                    <button>
-                      <i className="pi pi-pencil"></i>{" "}
-                    </button>
+                    <></>
                   )}
                 </div>
               </h3>
@@ -232,7 +237,11 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                       <th>Score</th>
                       <th>Type</th>
                       <th>Episodes</th>
-                      <th>Delete</th>
+                      {!isEditingUserInfo && usernameLocal === username ? (
+                        <th>Delete</th>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   </thead>
                   <tbody>
@@ -250,9 +259,13 @@ const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
                           <td>{Math.floor(Math.random() * 100) + 1}</td>
                           <td>TV</td>
                           <td>{dat.episodes}</td>
-                          <td>
-                            <i className="pi pi-trash"></i>
-                          </td>
+                          {!isEditingUserInfo && usernameLocal === username ? (
+                            <td>
+                              <i className="pi pi-trash"></i>
+                            </td>
+                          ) : (
+                            <></>
+                          )}
                         </tr>
                       );
                     })}
