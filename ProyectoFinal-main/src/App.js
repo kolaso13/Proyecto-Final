@@ -53,6 +53,7 @@ function App() {
               data={data}
               setData={setData}
               dataAnimeFav={dataAnimeFav}
+              setdataAnimeFav={setdataAnimeFav}
             />
           }
         />

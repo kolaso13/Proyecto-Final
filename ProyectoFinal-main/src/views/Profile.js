@@ -9,14 +9,30 @@ import Footer from "../components/Footer";
 import "../styles/Profile.sass";
 import Login from "./Login";
 
-const Profile = ({ data, setData, dataAnimeFav }) => {
+const Profile = ({ data, setData, dataAnimeFav, setdataAnimeFav }) => {
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      const url = "https://localhost:5001/api/AnimeDatas";
+      const respuesta = await fetch(url).then((res) => res.json());
+      setDataPerfil(respuesta);
+    };
+    obtenerDatos();
+
+    const obtenerDatos2 = async () => {
+      const url = "https://localhost:5001/api/Anime_User";
+      const respuesta = await fetch(url).then((res) => res.json());
+      setdataAnimeFav(respuesta);
+    };
+    obtenerDatos2();
+  }, []);
   console.log(data);
-  console.log(dataAnimeFav[0]);
+
   const [isLoading, setIsLoading] = useState(true);
   const [isEditingUserInfo, setisEditingUserInfo] = useState(false);
   const { username } = useParams();
   const [DataPerfil, setDataPerfil] = useState(data);
-
+  // const [dataAnimesFav, setdataAnimesFav] = useState();
+  let dataAnimesFav = new Array();
   const [Nombre, setNombre] = useState("Peter");
   const [Apellido, setApellido] = useState("Plato");
   const [Edad, setEdad] = useState("34");
@@ -27,33 +43,22 @@ const Profile = ({ data, setData, dataAnimeFav }) => {
   "memorialísticos", y a su vez integrados en los
   ensayísticos.`);
 
-  const dataAnimeFavUser = dataAnimeFav.filter(
+  const dataAnimeFavUser = dataAnimeFav?.filter(
     (word) => word.username == username
   );
   console.log(dataAnimeFavUser);
+  console.log(DataPerfil);
+  if (DataPerfil != undefined && dataAnimeFavUser != undefined) {
+    for (let i = 0; i < DataPerfil.length; i++) {
+      for (let j = 0; j < dataAnimeFavUser.length; j++) {
+        if (DataPerfil[i].name == dataAnimeFavUser[j].animeName) {
+          dataAnimesFav.push(DataPerfil[i]);
+        }
+      }
+    }
+  }
+  console.log(dataAnimesFav);
   /*Logica*/
-  const array = new Array();
-  useEffect(() => {
-    const obtenerDatos = async () => {
-      const url = "https://localhost:5001/api/AnimeDatas";
-      const respuesta = await fetch(url).then((res) => res.json());
-      setDataPerfil(respuesta);
-      console.log(respuesta);
-    };
-    obtenerDatos();
-  }, []);
-  // useEffect(() => {
-  //   const obtenerDatos = () => {
-  //     fetch(`https://localhost:5001/api/AnimeDatas/${animename}`)
-  //       .then((response) => response.json())
-  //       .then((message) => {
-  //         array.push(message);
-  //         setAnimeData(array);
-  //         setIsLoading(false);
-  //       });
-  //   };
-  //   obtenerDatos();
-  // }, [animename]);
 
   // if (isLoading) {
   //   return (
@@ -84,7 +89,7 @@ const Profile = ({ data, setData, dataAnimeFav }) => {
                 <b>Información</b>
                 <div id="editbtn">
                   {" "}
-                  {isEditingUserInfo ? (
+                  {!isEditingUserInfo ? (
                     <button
                       onClick={() => {
                         setisEditingUserInfo(!isEditingUserInfo);
@@ -100,7 +105,7 @@ const Profile = ({ data, setData, dataAnimeFav }) => {
                 </div>
               </h3>
               <hr />
-              {isEditingUserInfo ? (
+              {!isEditingUserInfo ? (
                 <>
                   <h5>Nombre: Peter </h5>
                   <h5>Apellido: Plato</h5>
@@ -232,7 +237,7 @@ const Profile = ({ data, setData, dataAnimeFav }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {DataPerfil?.map((dat) => {
+                    {dataAnimesFav?.map((dat) => {
                       return (
                         <tr key={dat.name}>
                           <td>1</td>
