@@ -1,7 +1,7 @@
 //React
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import "../styles/Profilebtn.css";
 //Components
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -9,8 +9,9 @@ import Footer from "../components/Footer";
 import "../styles/Profile.sass";
 import Login from "./Login";
 
-const Profile = ({ data }) => {
+const Profile = ({ data, setData, dataAnimeFav }) => {
   console.log(data);
+  console.log(dataAnimeFav[0]);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditingUserInfo, setisEditingUserInfo] = useState(false);
   const { username } = useParams();
@@ -26,8 +27,10 @@ const Profile = ({ data }) => {
   "memorialísticos", y a su vez integrados en los
   ensayísticos.`);
 
-  const changeNombre = () => {};
-
+  const dataAnimeFavUser = dataAnimeFav.filter(
+    (word) => word.username == username
+  );
+  console.log(dataAnimeFavUser);
   /*Logica*/
   const array = new Array();
   useEffect(() => {
@@ -197,8 +200,9 @@ const Profile = ({ data }) => {
                   <div
                     style={{ margin: "20px", textAlign: "center", gap: "20px" }}
                   >
-                    <button>Save</button>
+                    <button id="savebtn">Save</button>
                     <button
+                      id="cancelbtn"
                       onClick={() => {
                         setisEditingUserInfo(!isEditingUserInfo);
                       }}

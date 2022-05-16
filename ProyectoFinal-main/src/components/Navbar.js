@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/Navbar.sass";
 import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
-import users from "../data/usuarios.json";
 import Login from "../views/Login";
 const Navbar = () => {
   const Login = () => {
@@ -28,11 +27,7 @@ const Navbar = () => {
                 <Link to="/catalogue">Catalogo</Link>
               </li>
               <li>
-                {users[0].user === "Adrian" ? (
-                  <Link to={`/profile/${users[0].user}`}>Perfil</Link>
-                ) : (
-                  <Link to="/login">Iniciar Sesión</Link>
-                )}
+                <Link to={`/profile/Underline`}>Perfil</Link>
               </li>
               <li id="login-Button" onClick={Login}>
                 Log in

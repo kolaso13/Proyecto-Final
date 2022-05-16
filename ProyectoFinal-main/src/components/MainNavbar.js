@@ -37,11 +37,7 @@ const MainNavbar = () => {
                   <Link to="/catalogue">Catalogo</Link>
                 </li>
                 <li>
-                  {users[0].user === "Adrian" ? (
-                    <Link to={`/profile/${users[0].user}`}>Perfil</Link>
-                  ) : (
-                    <Link to="/login">Iniciar Sesión</Link>
-                  )}
+                  <Link to={`/profile/Underline`}>Perfil</Link>
                 </li>
                 <li id="login-Button" onClick={Login}>
                   Log in

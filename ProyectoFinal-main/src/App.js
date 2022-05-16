@@ -15,14 +15,25 @@ import { useEffect, useState } from "react";
 
 function App() {
   /*Logica*/
+
   const [data, setData] = useState();
+  const [dataAnimeFav, setdataAnimeFav] = useState();
   useEffect(() => {
-    const obtenerDatos = async () => {
-      const url = "https://localhost:5001/api/AnimeDatas";
-      const respuesta = await fetch(url).then((res) => res.json());
+    const obtenerDatosDataAnime = async () => {
+      let url = "https://localhost:5001/api/AnimeDatas";
+      let respuesta = await fetch(url).then((res) => res.json());
       setData(respuesta);
     };
-    obtenerDatos();
+    obtenerDatosDataAnime();
+  }, []);
+
+  useEffect(() => {
+    const obtenerDatosAnimeFav = async () => {
+      let url2 = "https://localhost:5001/api/Anime_User";
+      let respuesta2 = await fetch(url2).then((res) => res.json());
+      setdataAnimeFav(respuesta2);
+    };
+    obtenerDatosAnimeFav();
   }, []);
   return (
     <BrowserRouter>
@@ -37,9 +48,19 @@ function App() {
         <Route
           exact
           path="profile/:username"
-          element={<Profile data={data} />}
+          element={
+            <Profile
+              data={data}
+              setData={setData}
+              dataAnimeFav={dataAnimeFav}
+            />
+          }
         />
-        <Route exact path="anime/:animename" element={<Anime data={data} />} />
+        <Route
+          exact
+          path="anime/:animename"
+          element={<Anime data={data} dataAnimeFav={dataAnimeFav} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

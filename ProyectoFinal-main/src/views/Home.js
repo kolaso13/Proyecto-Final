@@ -7,7 +7,7 @@ import "primeicons/primeicons.css";
 import { Link } from "react-router-dom";
 const Home = ({ data, setData }) => {
   /*Logica*/
-
+  console.log(data);
   const responsiveOptions = [
     {
       breakpoint: "1024px",
@@ -58,31 +58,39 @@ const Home = ({ data, setData }) => {
 
         <div className="carousel">
           <div className="card" style={{ border: "none" }}>
-            <Carousel
-              value={data}
-              numVisible={5}
-              numScroll={1}
-              responsiveOptions={responsiveOptions}
-              className="custom-carousel"
-              circular
-              itemTemplate={animeTemplate}
-              header={<h2>Popular en MALABARJU</h2>}
-            />
+            {data === undefined ? (
+              <></>
+            ) : (
+              <Carousel
+                value={data}
+                numVisible={5}
+                numScroll={1}
+                responsiveOptions={responsiveOptions}
+                className="custom-carousel"
+                circular
+                itemTemplate={animeTemplate}
+                header={<h2>Popular en MALABARJU</h2>}
+              />
+            )}
           </div>
         </div>
 
         <div className="carousel">
           <div className="card" style={{ border: "none" }}>
-            <Carousel
-              value={data}
-              numVisible={5}
-              numScroll={1}
-              responsiveOptions={responsiveOptions}
-              className="custom-carousel"
-              circular
-              itemTemplate={animeTemplate}
-              header={<h2>Tendencias ahora</h2>}
-            />
+            {data === undefined ? (
+              <></>
+            ) : (
+              <Carousel
+                value={data}
+                numVisible={5}
+                numScroll={1}
+                responsiveOptions={responsiveOptions}
+                className="custom-carousel"
+                circular
+                itemTemplate={animeTemplate}
+                header={<h2>Tendencias ahora</h2>}
+              />
+            )}
           </div>
         </div>
         <Footer />
