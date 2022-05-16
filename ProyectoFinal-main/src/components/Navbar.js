@@ -4,6 +4,7 @@ import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
 import users from "../data/usuarios.json";
 import Login from "../views/Login";
+import { useState } from "react";
 const Navbar = () => {
   const Login = () => {
     document.getElementById("difuminar").className = "difuminado";
@@ -34,6 +35,7 @@ const Navbar = () => {
                   <Link to="/login">Iniciar Sesión</Link>
                 )}
               </li>
+
               <li id="login-Button" onClick={Login}>
                 Log in
               </li>

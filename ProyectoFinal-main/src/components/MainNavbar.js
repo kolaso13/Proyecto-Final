@@ -3,6 +3,7 @@ import "../styles/MainNavbar.sass";
 import menuicon from "../img/lista.png";
 import { Outlet, Link } from "react-router-dom";
 import users from "../data/usuarios.json";
+import { useState } from "react";
 const MainNavbar = () => {
   /*Logica*/
   window.addEventListener("scroll", () => {
@@ -13,6 +14,8 @@ const MainNavbar = () => {
       header.classList.remove("sticky");
     }
   });
+
+  function CerrarSesion() {}
   const Login = () => {
     document.getElementById("difuminar").className = "difuminado";
     document.getElementById("login").style.display = "flex";
