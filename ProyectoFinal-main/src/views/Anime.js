@@ -13,6 +13,7 @@ const Anime = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { animename } = useParams();
+  const [isFav, setisFav] = useState(false);
   const [AnimeData, setAnimeData] = useState();
   /*Logica*/
   const array = new Array();
@@ -52,6 +53,16 @@ const Anime = ({ data }) => {
                 <div id="info-Menu">
                   <img alt="" src={ani.image} style={{ width: "250px" }} />
                   <div>
+                    {isFav ? (
+                      <button onClick={() => setisFav(!isFav)}>
+                        <i className="pi pi-heart-fill"></i>
+                      </button>
+                    ) : (
+                      <button onClick={() => setisFav(!isFav)}>
+                        <i className="pi pi-heart"></i>
+                      </button>
+                    )}
+
                     <h5>Information</h5>
                     <hr />
                     <p>
