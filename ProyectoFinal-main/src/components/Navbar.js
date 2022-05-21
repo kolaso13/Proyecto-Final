@@ -6,7 +6,7 @@ import Login from "../views/Login";
 const Navbar = ({ isLogged, setisLogged }) => {
   const userNameLocal = localStorage.getItem("username");
   const Login = () => {
-    if(localStorage.getItem("username")){
+    if (localStorage.getItem("username")) {
       setisLogged(!isLogged);
     }
     document.getElementById("difuminar").className = "difuminado";
@@ -19,7 +19,6 @@ const Navbar = ({ isLogged, setisLogged }) => {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
   };
-  console.log(userNameLocal);
   return (
     <div>
       <div id="headerHeight" className="NavNoMain">

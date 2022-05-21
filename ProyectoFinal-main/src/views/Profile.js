@@ -32,7 +32,6 @@ const Profile = ({
     };
     obtenerDatos2();
   }, []);
-  console.log(data);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isEditingUserInfo, setisEditingUserInfo] = useState(false);
@@ -44,16 +43,14 @@ const Profile = ({
   const [Apellido, setApellido] = useState("Undefined");
   const [Edad, setEdad] = useState("Undefined");
   const [Sexo, setSexo] = useState("Undefined");
-  const [Biografia, setBiografia] =
-    useState(`Undefined`);
+  const [Biografia, setBiografia] = useState(`Undefined`);
   const [Contraseña, setContraseña] = useState();
   const [Role, setRole] = useState();
 
   const dataAnimeFavUser = dataAnimeFav?.filter(
     (word) => word.username == username
   );
-  console.log(dataAnimeFavUser);
-  console.log(DataPerfil);
+
   if (DataPerfil != undefined && dataAnimeFavUser != undefined) {
     for (let i = 0; i < DataPerfil.length; i++) {
       for (let j = 0; j < dataAnimeFavUser.length; j++) {
@@ -63,7 +60,6 @@ const Profile = ({
       }
     }
   }
-  console.log(dataAnimesFav);
 
   var [favorito, setFavorito] = useState(0);
   function borrarFavorito(animename) {
@@ -93,6 +89,7 @@ const Profile = ({
     })
       .then(() => {
         console.log("removed");
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -100,38 +97,67 @@ const Profile = ({
   }
   useEffect(() => {
     const obteniendoDatos = () => {
-    fetch(
-      `https://localhost:5001/api/UserDatas/${username}`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if(response[0].firstName != null){setNombre(response[0].firstName)}
-        if(response[0].lastName != null){setApellido(response[0].lastName)}
-        if(response[0].edad != null){setEdad(response[0].edad)}
-        if(response[0].sexo != null){setSexo(response[0].sexo)}
-        if(response[0].biografia != null){setBiografia(response[0].biografia)}
-        setRole(response[0].role)
-        setContraseña(response[0].password)
-      })
-      .catch();
-    }
+      fetch(`https://localhost:5001/api/UserDatas/${username}`)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response[0].firstName != null) {
+            setNombre(response[0].firstName);
+          }
+          if (response[0].lastName != null) {
+            setApellido(response[0].lastName);
+          }
+          if (response[0].edad != null) {
+            setEdad(response[0].edad);
+          }
+          if (response[0].sexo != null) {
+            setSexo(response[0].sexo);
+          }
+          if (response[0].biografia != null) {
+            setBiografia(response[0].biografia);
+          }
+          setRole(response[0].role);
+          setContraseña(response[0].password);
+        })
+        .catch();
+    };
     obteniendoDatos();
   }, [username]);
-  
-  function actualizarDatos(){
-    console.log(username + " " + Nombre +  " " + Apellido + " " + Edad + " " + Sexo + " " + Biografia)
-    let Info = {username: username, firstName: Nombre, lastName: Apellido, edad: Edad, sexo: Sexo, biografia: Biografia, role: Role, password: Contraseña};
-    fetch(`https://localhost:5001/api/UserDatas/${username}`,{
+
+  function actualizarDatos() {
+    console.log(
+      username +
+        " " +
+        Nombre +
+        " " +
+        Apellido +
+        " " +
+        Edad +
+        " " +
+        Sexo +
+        " " +
+        Biografia
+    );
+    let Info = {
+      username: username,
+      firstName: Nombre,
+      lastName: Apellido,
+      edad: Edad,
+      sexo: Sexo,
+      biografia: Biografia,
+      role: Role,
+      password: Contraseña,
+    };
+    fetch(`https://localhost:5001/api/UserDatas/${username}`, {
       method: "PUT",
       body: JSON.stringify(Info),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     }).then(() => {
       console.log("Updated");
-      setisEditingUserInfo(!isEditingUserInfo)
+      setisEditingUserInfo(!isEditingUserInfo);
       // window.location.reload();
-    })
+    });
   }
 
   /*Logica*/
@@ -185,10 +211,7 @@ const Profile = ({
                   <h5>Apellido: {Apellido} </h5>
                   <h5>Edad: {Edad}</h5>
                   <h5>Sexo: {Sexo}</h5>
-                  <h5>
-                    {" "}
-                    Biografia: {Biografia}
-                  </h5>
+                  <h5> Biografia: {Biografia}</h5>
                 </>
               ) : (
                 <>
@@ -276,7 +299,9 @@ const Profile = ({
                   <div
                     style={{ margin: "20px", textAlign: "center", gap: "20px" }}
                   >
-                    <button onClick={() => actualizarDatos()} id="savebtn">Save</button>
+                    <button onClick={() => actualizarDatos()} id="savebtn">
+                      Save
+                    </button>
                     <button
                       id="cancelbtn"
                       onClick={() => {
@@ -308,7 +333,6 @@ const Profile = ({
                   </thead>
                   <tbody>
                     {dataAnimesFav?.map((dat) => {
-                      console.log(dat);
                       return (
                         <tr key={dat.name}>
                           <td>

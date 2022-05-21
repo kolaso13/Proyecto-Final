@@ -61,16 +61,13 @@ const Anime = ({ data, isLogged, setisLogged }) => {
       },
     })
       .then(() => {
-        console.log("removed");
         setisFav(false);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => {});
   }
 
   function añadirFavorito() {
-    if(localStorage.getItem("username")){
+    if (localStorage.getItem("username")) {
       fetch("https://localhost:5001/api/Anime_User", {
         method: "POST",
         headers: {
@@ -90,9 +87,7 @@ const Anime = ({ data, isLogged, setisLogged }) => {
         .then((response) => {
           setisFav(true);
         })
-        .catch((err) => {
-          console.log("error");
-      });
+        .catch((err) => {});
     }
   }
 

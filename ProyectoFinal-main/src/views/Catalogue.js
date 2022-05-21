@@ -22,7 +22,6 @@ const Catalogue = ({ data, setData, isLogged, setisLogged }) => {
       const url = "https://localhost:5001/api/AnimeDatas";
       const respuesta = await fetch(url).then((res) => res.json());
       setDataFiltrada(respuesta);
-      console.log(respuesta);
     };
     obtenerDatos();
   }, []);

@@ -25,7 +25,6 @@ function App() {
       ? true
       : false
   );
-  console.log(isLogged);
   useEffect(() => {
     const obtenerDatosDataAnime = async () => {
       let url = "https://localhost:5001/api/AnimeDatas";
