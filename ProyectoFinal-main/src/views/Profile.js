@@ -40,15 +40,12 @@ const Profile = ({
   const [DataPerfil, setDataPerfil] = useState(data);
 
   let dataAnimesFav = new Array();
-  const [Nombre, setNombre] = useState("Peter");
-  const [Apellido, setApellido] = useState("Plato");
-  const [Edad, setEdad] = useState("34");
-  const [Sexo, setSexo] = useState("Masculino");
+  const [Nombre, setNombre] = useState("Undefined");
+  const [Apellido, setApellido] = useState("Undefined");
+  const [Edad, setEdad] = useState("Undefined");
+  const [Sexo, setSexo] = useState("Undefined");
   const [Biografia, setBiografia] =
-    useState(`La biografía es un tipo o subgénero
-  literario-histórico situado dentro de los géneros
-  "memorialísticos", y a su vez integrados en los
-  ensayísticos.`);
+    useState(`Undefined`);
 
   const dataAnimeFavUser = dataAnimeFav?.filter(
     (word) => word.username == username
@@ -64,8 +61,12 @@ const Profile = ({
       }
     }
   }
-
   console.log(dataAnimesFav);
+
+
+  
+
+
 
   var [favorito, setFavorito] = useState(0);
   function borrarFavorito(animename) {
@@ -100,6 +101,24 @@ const Profile = ({
         console.error(err);
       });
   }
+  useEffect(() => {
+    const obteniendoDatos = () => {
+    fetch(
+      `https://localhost:5001/api/UserDatas/${username}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setNombre(response[0].firstName)
+        setApellido(response[0].lastName)
+        setEdad(response[0].edad)
+        setSexo(response[0].sexo)
+        setBiografia(response[0].biografia)
+      })
+      .catch();
+      
+    }
+    obteniendoDatos();
+  }, [username]);
   /*Logica*/
   const usernameLocal = localStorage.getItem("username");
   // if (isLoading) {
@@ -147,16 +166,13 @@ const Profile = ({
               <hr />
               {!isEditingUserInfo ? (
                 <>
-                  <h5>Nombre: Peter </h5>
-                  <h5>Apellido: Plato</h5>
-                  <h5>Edad: 34</h5>
-                  <h5>Sexo: Masculino</h5>
+                  <h5>Nombre: {Nombre} </h5>
+                  <h5>Apellido: {Apellido} </h5>
+                  <h5>Edad: {Edad}</h5>
+                  <h5>Sexo: {Sexo}</h5>
                   <h5>
                     {" "}
-                    Biografia: La biografía es un tipo o subgénero
-                    literario-histórico situado dentro de los géneros
-                    "memorialísticos", y a su vez integrados en los
-                    ensayísticos.
+                    Biografia: {Biografia}
                   </h5>
                 </>
               ) : (

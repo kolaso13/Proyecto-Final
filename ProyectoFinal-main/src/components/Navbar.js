@@ -6,7 +6,9 @@ import Login from "../views/Login";
 const Navbar = ({ isLogged, setisLogged }) => {
   const userNameLocal = localStorage.getItem("username");
   const Login = () => {
-    setisLogged(!isLogged);
+    if(localStorage.getItem("username")){
+      setisLogged(!isLogged);
+    }
     document.getElementById("difuminar").className = "difuminado";
     document.getElementById("login").style.display = "flex";
     document.body.style.overflow = "hidden";

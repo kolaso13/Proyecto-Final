@@ -37,6 +37,7 @@ const Login = ({ isLogged, setisLogged }) => {
         localStorage.setItem("token", response.token);
         localStorage.setItem("username", response.username);
         setDatosError(false);
+        window.location.reload();
         Cerrar();
       })
       .catch((err) => {
@@ -48,8 +49,8 @@ const Login = ({ isLogged, setisLogged }) => {
       <div className="input-container circle-x">
         <button
           onClick={() => Cerrar()}
-          className="pi pi-times-circle icono"
-        ></button>
+          
+        ><i className="pi pi-times-circle icono"></i></button>
       </div>
       <div className="input-container">
         <input type="text" placeholder="Username" id="Username" />

@@ -70,28 +70,30 @@ const Anime = ({ data, isLogged, setisLogged }) => {
   }
 
   function añadirFavorito() {
-    fetch("https://localhost:5001/api/Anime_User", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        username: localStorage.getItem("username"),
-        animeName: animename,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
+    if(localStorage.getItem("username")){
+      fetch("https://localhost:5001/api/Anime_User", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          username: localStorage.getItem("username"),
+          animeName: animename,
+        }),
       })
-      .then((response) => {
-        setisFav(true);
-      })
-      .catch((err) => {
-        console.log("error");
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((response) => {
+          setisFav(true);
+        })
+        .catch((err) => {
+          console.log("error");
       });
+    }
   }
 
   if (isLoading) {
