@@ -47,10 +47,9 @@ const Login = ({ isLogged, setisLogged }) => {
   return (
     <div id="login">
       <div className="input-container circle-x">
-        <button
-          onClick={() => Cerrar()}
-          
-        ><i className="pi pi-times-circle icono"></i></button>
+        <button onClick={() => Cerrar()}>
+          <i className="pi pi-times-circle icono"></i>
+        </button>
       </div>
       <div className="input-container">
         <input type="text" placeholder="Username" id="Username" />

@@ -46,6 +46,8 @@ const Profile = ({
   const [Sexo, setSexo] = useState("Undefined");
   const [Biografia, setBiografia] =
     useState(`Undefined`);
+  const [Contraseña, setContraseña] = useState();
+  const [Role, setRole] = useState();
 
   const dataAnimeFavUser = dataAnimeFav?.filter(
     (word) => word.username == username
@@ -108,6 +110,8 @@ const Profile = ({
         if(response[0].edad != null){setEdad(response[0].edad)}
         if(response[0].sexo != null){setSexo(response[0].sexo)}
         if(response[0].biografia != null){setBiografia(response[0].biografia)}
+        setRole(response[0].role)
+        setContraseña(response[0].password)
       })
       .catch();
     }
@@ -116,7 +120,7 @@ const Profile = ({
   
   function actualizarDatos(){
     console.log(username + " " + Nombre +  " " + Apellido + " " + Edad + " " + Sexo + " " + Biografia)
-    let Info = {username: username, firstName: Nombre, lastName: Apellido, edad: Edad, sexo: Sexo, biografia: Biografia};
+    let Info = {username: username, firstName: Nombre, lastName: Apellido, edad: Edad, sexo: Sexo, biografia: Biografia, role: Role, password: Contraseña};
     fetch(`https://localhost:5001/api/UserDatas/${username}`,{
       method: "PUT",
       body: JSON.stringify(Info),
