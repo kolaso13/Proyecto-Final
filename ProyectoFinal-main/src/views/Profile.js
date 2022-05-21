@@ -63,11 +63,6 @@ const Profile = ({
   }
   console.log(dataAnimesFav);
 
-
-  
-
-
-
   var [favorito, setFavorito] = useState(0);
   function borrarFavorito(animename) {
     fetch(
@@ -108,17 +103,33 @@ const Profile = ({
     )
       .then((response) => response.json())
       .then((response) => {
-        setNombre(response[0].firstName)
-        setApellido(response[0].lastName)
-        setEdad(response[0].edad)
-        setSexo(response[0].sexo)
-        setBiografia(response[0].biografia)
+        if(response[0].firstName != null){setNombre(response[0].firstName)}
+        if(response[0].lastName != null){setApellido(response[0].lastName)}
+        if(response[0].edad != null){setEdad(response[0].edad)}
+        if(response[0].sexo != null){setSexo(response[0].sexo)}
+        if(response[0].biografia != null){setBiografia(response[0].biografia)}
       })
       .catch();
-      
     }
     obteniendoDatos();
   }, [username]);
+  
+  function actualizarDatos(){
+    console.log(username + " " + Nombre +  " " + Apellido + " " + Edad + " " + Sexo + " " + Biografia)
+    let Info = {username: username, firstName: Nombre, lastName: Apellido, edad: Edad, sexo: Sexo, biografia: Biografia};
+    fetch(`https://localhost:5001/api/UserDatas/${username}`,{
+      method: "PUT",
+      body: JSON.stringify(Info),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then(() => {
+      console.log("Updated");
+      setisEditingUserInfo(!isEditingUserInfo)
+      // window.location.reload();
+    })
+  }
+
   /*Logica*/
   const usernameLocal = localStorage.getItem("username");
   // if (isLoading) {
@@ -261,7 +272,7 @@ const Profile = ({
                   <div
                     style={{ margin: "20px", textAlign: "center", gap: "20px" }}
                   >
-                    <button id="savebtn">Save</button>
+                    <button onClick={() => actualizarDatos()} id="savebtn">Save</button>
                     <button
                       id="cancelbtn"
                       onClick={() => {
